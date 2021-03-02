@@ -15,8 +15,8 @@ function printQuestionMarks(num) {
 
 //  * `selectAll()` -- read
 const orm = {
-    selectAll : (tableName, cb) => {
-        const queryString = `SELECT * FROM ${tableName}`;
+    all(table, cb){
+        const queryString = `SELECT * FROM ${table}`;
         connection.query(queryString, (err, result) => {
             if (err) {
                 throw err;
@@ -25,8 +25,8 @@ const orm = {
         })
     }
     //  * `insertOne()` -- create
-    insertOne: (tableName, cols, vals, cb) => {
-        const queryString = `INSERT INTO ${tableName}`;
+    create(table, cols, vals, cb){
+        const queryString = `INSERT INTO ${table}`;
 
         queryString += ' (';
         queryString += cols.toString();
@@ -44,8 +44,8 @@ const orm = {
         });
     }
     //  * `updateOne()` -- update
-    updateOne: (tableName, cols, vals, cb) => {
-        const queryString = `UPDATE ${tableName}`;
+    update(table, cols, vals, cb){
+        const queryString = `UPDATE ${table}`;
 
         queryString += ' SET ';
         queryString += objToSql(cols);
@@ -59,7 +59,7 @@ const orm = {
           }
           cb(result)
         });
-    }
+    };
 
 };
 
