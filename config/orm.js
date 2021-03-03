@@ -5,64 +5,61 @@ const connection = require("./connection.js");
 
 //print ??
 function printQuestionMarks(num) {
-    var arr = [];
-    for (var i = 0; i < num; i++) {
-      arr.push("?");
-    }
-    return arr.toString();
+  var arr = [];
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
   }
-
+  return arr.toString();
+}
 
 //  * `selectAll()` -- read
 const orm = {
-    all(table, cb){
-        const queryString = `SELECT * FROM ${table}`;
-        connection.query(queryString, (err, result) => {
-            if (err) {
-                throw err;
-            }
-            cb(result)
-        })
-    }
-    //  * `insertOne()` -- create
-    create(table, cols, vals, cb) {
-        let queryString = `INSERT INTO ${table}`;
+  selectAll(table, cb) {
+    const queryString = `SELECT * FROM ${table}`;
+    connection.query(queryString, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
+  //  * `insertOne()` -- create
+  insertOne(table, cols, vals, cb) {
+    let queryString = `INSERT INTO ${table}`;
 
-        queryString += ' (';
-        queryString += cols.toString();
-        queryString += ') ';
-        queryString += 'VALUES (';
-        queryString += printQuestionMarks(vals.length);
-        queryString += ') ';
+    queryString += " (";
+    queryString += cols.toString();
+    queryString += ") ";
+    queryString += "VALUES (";
+    queryString += printQuestionMarks(vals.length);
+    queryString += ") ";
 
-        console.log(queryString);
-        connection.query(queryString, vals, (err, result) => {
-            if (err) {
-                throw err;
-            }
-            cb(result)
-        });
-    }
-    //  * `updateOne()` -- update
-    update(table, cols, vals, cb){
-        let queryString = `UPDATE ${table}`;
+    console.log(queryString);
+    connection.query(queryString, vals, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
+  //  * `updateOne()` -- update
+  updateOne(table, cols, vals, cb) {
+    let queryString = `UPDATE ${table}`;
 
-        queryString += ' SET ';
-        queryString += objToSql(cols);
-        queryString += ' WHERE ';
-        queryString += vals;
+    queryString += " SET ";
+    queryString += objToSql(cols);
+    queryString += " WHERE ";
+    queryString += vals;
 
-        console.log(queryString);
-        connection.query(queryString, (err, result) => {
-          if (err) {
-            throw err;
-          }
-          cb(result)
-        });
-    };
-
+    console.log(queryString);
+    connection.query(queryString, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
 };
-
 
 // Export the ORM object in `module.exports`.
 module.exports = orm;
