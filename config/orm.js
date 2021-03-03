@@ -12,6 +12,29 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
+// Helper function to convert object key/value pairs to SQL syntax
+const objToSql = (ob) => {
+  const arr = [];
+
+  // Loop through the keys and push the key/value as a string int arr
+  for (const key in ob) {
+    let value = ob[key];
+    // Check to skip hidden properties
+    if (Object.hasOwnProperty.call(ob, key)) {
+      // If string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = `'${value}'`;
+      }
+      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+      // e.g. {sleepy: true} => ["sleepy=true"]
+      arr.push(`${key}=${value}`);
+    }
+  }
+
+  // Translate array of strings to a single comma-separated string
+  return arr.toString();
+};
+
 //  * `selectAll()` -- read
 const orm = {
   selectAll(table, cb) {

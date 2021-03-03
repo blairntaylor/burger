@@ -19,8 +19,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const newDevouredState = {
           devoured: newDevoured,
         };
-
-        fetch(`/api/cats/${id}`, {
+        //calling server
+        console.log(newDevouredState);
+        fetch(`/api/burgers/${id}`, {
           method: "PUT",
           headers: {
             Accept: "application/json",
@@ -52,10 +53,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       // Grabs the value of the textarea that goes by the name, "quote"
       const newBurger = {
-        name: document.getElementById("ca").value.trim(),
-        sleepy: document.getElementById("devoured").checked,
+        burger_name: document.getElementById("ca").value.trim(),
+        devoured: false,
       };
-
+      console.log(newBurger);
       // Send POST request to create a new quote
       fetch("/api/burgers", {
         method: "POST",

@@ -4,26 +4,27 @@
     <table>
         <tr>
             <th>Burger Name</th>
-            <th><button type="submit">Devour it!</button></th>
-            <th>Waiting to be Devoured</th>
-
+            <th>Devoured</th>
         </tr>
         <tr>
             <th>
                 <ul>
-                    {{#each burger_name}}
+                    {{#each burgers}}
                     {{#unless devoured}}
-                    {{> burgers/burger-block devoured=false}}
+                    <li>
+                        {{burger_name}}
+                        <button class="change-devoured" data-id="{{id}}" data-devoured="{{devoured}}"> DEVOUR</button>
+                    </li>
                     {{/unless}}
                     {{/each}}
                 </ul>
             </th>
             <th>
                 <ul>
-                    {{#each burger_name}}
-                    {{#unless devoured}}
-                    {{> burgers/burger-block devoured=true}}
-                    {{/unless}}
+                    {{#each burgers}}
+                    {{#if devoured}}
+                    {{burger_name}}
+                    {{/if}}
                     {{/each}}
                 </ul>
             </th>
