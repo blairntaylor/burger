@@ -25,8 +25,8 @@ const orm = {
         })
     }
     //  * `insertOne()` -- create
-    create(table, cols, vals, cb){
-        const queryString = `INSERT INTO ${table}`;
+    create(table, cols, vals, cb) {
+        let queryString = `INSERT INTO ${table}`;
 
         queryString += ' (';
         queryString += cols.toString();
@@ -45,7 +45,7 @@ const orm = {
     }
     //  * `updateOne()` -- update
     update(table, cols, vals, cb){
-        const queryString = `UPDATE ${table}`;
+        let queryString = `UPDATE ${table}`;
 
         queryString += ' SET ';
         queryString += objToSql(cols);
