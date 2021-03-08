@@ -22,19 +22,17 @@ There were quite a few challenges getting it all to work together. I was able to
 
 ## Installation
 
-It is deployed on heroku or link in github.
-
-## Usage
-
-Click on the link.
+It is deployed on Heroku or link in GitHub.
+[Lets go to GitHub](https://blairntaylor.github.io/burger/)
+[Lets go to GitHub](https://blairntaylor.github.io/burger/)
 
 ## Contributing
 
-Email
+Email author.
 
 ## Tests
 
-Email
+Email author.
 
 ## Screenshot
 
