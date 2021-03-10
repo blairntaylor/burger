@@ -1,13 +1,28 @@
 //setup MYSQL connection
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "Daphne77",
-  database: "burgers_db",
-});
+// const connection = mysql.createConnection({
+//   //need to check initialized connection
+//   //using local and need to get a global
+//   //check proceess.env
+//   host: "localhost",
+//   port: 3306,
+//   user: "root",
+//   password: "Daphne77",
+//   database: "burgers_db",
+// });
+
+if (process.env.JAWSDB_RL) {
+  connection = mysql.createConnection(process.eventNames.JAWSDB_URL);
+} else {
+  connection = mysql.createConnction({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "Daphne77",
+    database: "burgers_db",
+  });
+}
 
 // Make connection.
 connection.connect((err) => {
