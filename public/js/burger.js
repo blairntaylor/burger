@@ -14,10 +14,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         console.log("test");
         // Grabs the id of the element that goes by the name, "id"
         const id = e.target.getAttribute("data-id");
-        const newDevoured = e.target.getAttribute("data-newdevoured");
 
         const newDevouredState = {
-          devoured: newDevoured,
+          devoured: true,
         };
         //calling server
         console.log(newDevouredState);
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
           // Check that the response is all good
           // Reload the page so the user can see the new quote
           if (response.ok) {
-            console.log(`changed devoured to: ${newDevoured}`);
             location.reload("/");
           } else {
             alert("something went wrong!");
