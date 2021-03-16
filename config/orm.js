@@ -1,7 +1,8 @@
 // Import (require) `connection.js` into `orm.js`
 const connection = require("./connection.js");
 
-//In the `orm.js` file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
+//In the `orm.js` file, create the methods that will execute the necessary MySQL commands in the controllers.
+//These are the methods you will need to use in order to retrieve and store data in your database.
 
 //print ??
 function printQuestionMarks(num) {
@@ -21,12 +22,11 @@ const objToSql = (ob) => {
     let value = ob[key];
     // Check to skip hidden properties
     if (Object.hasOwnProperty.call(ob, key)) {
-      // If string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+      // If string with spaces, add quotations
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
         value = `'${value}'`;
       }
-      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-      // e.g. {sleepy: true} => ["sleepy=true"]
+
       arr.push(`${key}=${value}`);
     }
   }
